@@ -1,26 +1,19 @@
-/*
- * Metadata describing the module operation
- */
 {
-    //Required. Inputs the module expects.
     "inputs": [
-        //e.g.
-        /*
         {
-            "id": "from",
-            "title":"From"
+            "id": "zipcodes",
+            "title":"Zipcodes"
         }
-        */
     ],
-    //Required. Outputs the module emits.
     "outputs": [
-      //e.g.
-      /*
         {
-            "id": "from",
-            "title":"From"
+            "id": "lat",
+            "title":"Latitude"
+        }, {
+            "id": "lon",
+            "title":"Longitude"
         }
-      */
     ],
-    "title": "GIS: Zipcode to Coordinates" /* Required.A display name for the module */
+    "icon": "map",
+    "title": "GIS: Zipcode to Coordinates"
 }

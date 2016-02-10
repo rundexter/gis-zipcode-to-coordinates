@@ -1,3 +1,4 @@
+//https://github.com/dryan/static-zipcode-api
 module.exports = {
     /**
      * The main entry point for the Dexter module
@@ -6,8 +7,23 @@ module.exports = {
      * @param {AppData} dexter Container for all data used in this workflow.
      */
     run: function(step, dexter) {
-        var results = { foo: 'bar' };
-        //Call this.complete with the module's output.  If there's an error, call this.fail(message) instead.
-        this.complete(results);
+        var data = null
+            , zipcodes = step.input('zipcodes')
+            , response = []
+            , failures = []
+        ;
+        zipcodes.each(function(zipcode) {
+            try {
+                data = require('./zipcodes/' + zipcode);
+                response.push(data);
+            } catch(e) {
+                failures.push(zipcode);
+                response.push({ lat: null, lng: null });
+            }
+        });
+        if(failures.length > 0) {
+            this.log('Failed fetching ' + failures.length + ' of ' + zipcodes.length + ' coordinate(s)', { failures: failures });
+        }
+        this.complete(response);
     }
 };
