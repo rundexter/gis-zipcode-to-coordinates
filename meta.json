@@ -10,7 +10,7 @@
             "id": "lat",
             "title":"Latitude"
         }, {
-            "id": "lon",
+            "id": "lng",
             "title":"Longitude"
         }
     ],
